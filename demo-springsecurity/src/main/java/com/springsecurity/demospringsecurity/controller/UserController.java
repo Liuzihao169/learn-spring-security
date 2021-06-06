@@ -25,6 +25,20 @@ public class UserController {
         return "this is my index";
     }
 
+
+    @RequestMapping("/index2")
+    @ResponseBody
+    public String index2(){
+        return "this is my index2";
+    }
+
+    @RequestMapping("/index3")
+    @ResponseBody
+    public String index3(){
+        return "this is my index3";
+    }
+
+
     @RequestMapping("/other")
     @ResponseBody
     public String otherSearch(){
@@ -45,6 +59,11 @@ public class UserController {
     }
 
 
+    /**
+     *  拥有bookInfo权限的才可以进行访问
+     *  需要使用注解：@EnableGlobalMethodSecurity(prePostEnabled = true)
+     * @return
+     */
     @RequestMapping("/book/info")
     @ResponseBody
     @PreAuthorize("hasAnyAuthority('bookInfo')")

@@ -1,8 +1,8 @@
 spring:
   datasource:
-    username: voucher
-    password: VOUCHER
-    url: jdbc:mysql://rm-2zea4h41ew1cd3njd.mysql.rds.aliyuncs.com:3306/voucher?useUnicode=true&characterEncoding=utf8&rewriteBatchedStatements=true
+    username: root
+    password: 123456
+    url: jdbc:mysql://localhost:3306/acl?useUnicode=true&characterEncoding=utf8&rewriteBatchedStatements=true
     driver-class-name: com.mysql.jdbc.Driver
 
 mybatis-plus:

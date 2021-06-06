@@ -44,8 +44,14 @@ public class MyUserServiceDetails implements UserDetailsService {
         /**
          * 设置权限:
          * 一般是根据用户查询到相关权限，然后进行设置
+         * 从数据库中查询相关数据
+         * 通常是 权限控制的5张表：
+         * 1、用户表   2、用户角色表  3、角色表  4、角色权限表  5、权限表
+         *
          */
         List<GrantedAuthority> admin = AuthorityUtils.commaSeparatedStringToAuthorityList("ROLE_admin,bookInfo");
+
+
         return new User(user.getUserName(), passwordEncoder.encode(user.getPassWord()), admin );
     }
 }
