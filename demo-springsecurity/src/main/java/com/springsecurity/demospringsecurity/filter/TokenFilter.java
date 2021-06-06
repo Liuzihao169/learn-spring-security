@@ -29,13 +29,13 @@ public class TokenFilter extends UsernamePasswordAuthenticationFilter {
      * @return
      * @throws AuthenticationException
      */
-    @Override
-    public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response)
-            throws AuthenticationException {
-
-      return super.attemptAuthentication(request,response);
-
-    }
+//    @Override
+//    public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response)
+//            throws AuthenticationException {
+//
+//      return super.attemptAuthentication(request,response);
+//
+//    }
 
     /**
      * 认证成功调用的方法
