@@ -14,7 +14,11 @@ import java.io.IOException;
 /**
  * @author liuzihao
  * @create 2021-06-06-11:13
- * token过滤器，再登录成功之后，可以进行token生成，并且将授权信息存储到redis当中
+ *
+ * 获取登录信息，并且可以生成token
+ * 可以设置登录成功Handler以及登录失败Handler
+ *
+ * * token过滤器，再登录成功之后，可以进行token生成，并且将授权信息存储到redis当中
  *
  */
 @Slf4j
