@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <version>2.3.3.RELEASE</version>
+    <relativePath /> <!-- lookup parent from repository -->
+  </parent>
+  <groupId>com.imooc</groupId>
+  <artifactId>mono-uaa</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>pom</packaging>
+  <name>mono-uaa</name>
+  <description>慕课网 Spring Security 实战课 OAuth2 授权服务器，资源服务器和客户端</description>
+
+  <modules>
+    <module>uaa-ui</module>
+    <module>uaa</module>
+  </modules>
+
+  <properties>
+    <java.version>11</java.version>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    <frontend-maven-plugin.version>1.9.1</frontend-maven-plugin.version>
+    <passay.version>1.6.0</passay.version>
+    <problem.version>0.26.1</problem.version>
+    <jjwt.version>0.11.1</jjwt.version>
+    <otp.version>0.2.0</otp.version>
+    <redisson.version>3.12.5</redisson.version>
+    <embedded.redis.version>0.7.2</embedded.redis.version>
+    <aliyun.version>4.5.0</aliyun.version>
+    <leancloud.version>6.5.3</leancloud.version>
+    <sendgrid.version>4.0.1</sendgrid.version>
+    <greenmail.version>1.5.13</greenmail.version>
+  </properties>
+
+</project>

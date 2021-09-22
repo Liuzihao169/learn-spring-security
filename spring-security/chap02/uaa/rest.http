@@ -1,0 +1,26 @@
+@password=0ebaa294-cc23-45df-977c-ebbe40e12123
+###
+GET http://localhost:8080/api/greeting HTTP/1.1
+###
+GET http://localhost:8080/api/greeting HTTP/1.1
+Authorization: Basic user {{password}}
+###
+POST http://localhost:8080/api/greeting?name=王五
+Authorization: Basic user {{password}}
+Content-Type: application/json
+
+{
+    "gender": "男",
+    "idNo": "22323232323"
+}
+###
+PUT http://localhost:8080/api/greeting/王五
+Authorization: Basic user {{password}}
+###
+POST http://localhost:8080/authorize/login
+Content-Type: application/json
+
+{
+    "username": "user",
+    "password": "1234567"
+}

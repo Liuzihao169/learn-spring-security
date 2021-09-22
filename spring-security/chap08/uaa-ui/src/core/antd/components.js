@@ -1,0 +1,62 @@
+import Vue from "vue";
+import {
+  Alert,
+  Layout,
+  Menu,
+  Form,
+  Input,
+  InputNumber,
+  Button,
+  Icon,
+  Breadcrumb,
+  Row,
+  Col,
+  Cascader,
+  Select,
+  Checkbox,
+  AutoComplete,
+  Tooltip,
+  FormModel,
+  DatePicker,
+  Radio,
+  Switch,
+  Table,
+  Pagination,
+  Dropdown,
+  Modal,
+  Popconfirm,
+  Tag,
+  PageHeader,
+  Descriptions,
+  Divider,
+} from "ant-design-vue";
+
+Vue.use(Alert);
+Vue.use(Layout);
+Vue.use(Menu);
+Vue.use(Form);
+Vue.use(Input);
+Vue.use(Button);
+Vue.use(Icon);
+Vue.use(Breadcrumb);
+Vue.use(Row);
+Vue.use(Col);
+Vue.use(Cascader);
+Vue.use(Select);
+Vue.use(Checkbox);
+Vue.use(AutoComplete);
+Vue.use(Tooltip);
+Vue.use(FormModel);
+Vue.use(DatePicker);
+Vue.use(Radio);
+Vue.use(Switch);
+Vue.use(Table);
+Vue.use(Pagination);
+Vue.use(Dropdown);
+Vue.use(Modal);
+Vue.use(Popconfirm);
+Vue.use(Tag);
+Vue.use(PageHeader);
+Vue.use(Descriptions);
+Vue.use(Divider);
+Vue.use(InputNumber);

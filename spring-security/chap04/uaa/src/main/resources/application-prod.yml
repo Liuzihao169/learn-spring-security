@@ -1,0 +1,65 @@
+logging:
+  pattern:
+    console:
+      "%clr(%d{E HH:mm:ss.SSS}){blue} %clr(%-5p) %clr(${PID}){faint} %clr(---){faint}
+      %clr([%8.15t]){cyan} %clr(%-40.40logger{0}){blue} %clr(:){red} %clr(%m){faint}%n"
+  level:
+    com.imooc: ERROR
+
+spring:
+  datasource:
+    hikari:
+      auto-commit: false
+      data-source-properties:
+        # 缓存 SQL 语句
+        cachePrepStmts: true
+        # 缓存大小
+        prepStmtCacheSize: 250
+        # 缓存 SQL 的长度限制
+        prepStmtCacheSqlLimit: 2048
+        # 服务器预编译
+        useServerPrepStmts: true
+      pool-name: Hikari
+    type: com.zaxxer.hikari.HikariDataSource
+    # 数据库连接 URL
+    url: jdbc:mysql://localhost:3306/security?useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false&serverTimezone=UTC
+    # 数据库用户名
+    username: user
+    # 数据库密码
+    password: password
+  devtools:
+    # 禁用 devtools 属性添加
+    add-properties: false
+    # 禁用热加载
+    livereload:
+      enabled: false
+    # 禁用自动重启
+    restart:
+      enabled: false
+  h2:
+    console:
+      # 禁用 H2 Console
+      enabled: false
+  jpa:
+    database: mysql
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+    hibernate:
+      # 禁用 hibernate 的表结构自动更新
+      ddl-auto: none
+    properties:
+      hibernate:
+        connection:
+          provider_disables_autocommit: true
+        generate_statistics: false
+        id:
+          new_generator_mappings: true
+        jdbc:
+          batch_size: 25
+        order_inserts: true
+        order_updates: true
+        query:
+          fail_on_pagination_over_collection_fetch: true
+          in_clause_parameter_padding: true
+    show-sql: false
+  profiles:
+    active: prod

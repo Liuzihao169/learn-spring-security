@@ -1,0 +1,42 @@
+GET {{host}}/.well-known/jwks.json
+
+### 授权码流程
+GET {{host}}/oauth/authorize?response_type=code&client_id=admin-client&redirect_uri=http://localhost:4001&state=123
+
+###
+# @name passwordFlow
+POST {{host}}/oauth/token?grant_type=password&username=user&password=12345678
+Content-Type: application/x-www-form-urlencoded
+Authorization: Basic admin-client secret
+
+@refreshToken={{passwordFlow.response.body.refresh_token}}
+
+###
+POST {{host}}/oauth/token?grant_type=refresh_token&refresh_token={{refreshToken}}
+Authorization: Basic admin-client secret
+
+###
+POST {{host}}/oauth/token?grant_type=client_credentials
+Content-Type: application/x-www-form-urlencoded
+Authorization: Basic admin-client secret
+
+###
+GET {{host}}/api/me HTTP/1.1
+Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1OTExNTAzODksInVzZXJfbmFtZSI6InVzZXIiLCJhdXRob3JpdGllcyI6WyJST0xFX1VTRVIiLCJST0xFX1NUQUZGIiwiVVNFUl9BRE1JTiIsIlVTRVJfQ1JFQVRFIiwiVVNFUl9VUERBVEUiLCJST0xFX0FETUlOIiwiVVNFUl9SRUFEIl0sImp0aSI6ImhRb2F0OUVrMlJQOGpzei1sZWoxZ2ZzVVVtNCIsImNsaWVudF9pZCI6ImFwcC1jbGllbnQiLCJzY29wZSI6WyJyZWFkIl19.ohc9jtF4gcfu9VlZ0hRYcJC7mOIifJ8UgUW8t-wBYBkZZXoA6hOZBV137NurtSvx3vxWg9gdo3hTcSf3VGwjeuL8use7x3wGzWmq3Dv6O2BW_k-tTKqLhbR-SE0b82ad4AAgXWCxqNkMEx3Cz86SLcbEpjfyZCqak_tY0EB4DgSD2bOFp_P3fATqkiv3F3Vj7SlS5vCHQp-VDjEkiFbEL5SPL7Obo14lDOcID2vxEoT3eia5OuiI7W79rgUUpt8NmY_lz4e6wid9NT_rnvQHWAMbgZxl5_U0s3pcNnqHgotorYVSP-t9h2gRReTvo7I8NLSpZsFsaVEhMS0b-TBhnw
+
+###
+POST {{host}}/process
+Content-Type: application/x-www-form-urlencoded
+
+username=user
+&password=12345678
+
+###
+POST {{host}}/clients
+Content-Type: application/json
+Authorization: Bearer
+
+{
+  "client_id": "test-client",
+  "client_secret": "secret"
+}

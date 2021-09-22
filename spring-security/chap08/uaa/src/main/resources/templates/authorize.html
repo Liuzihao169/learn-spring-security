@@ -1,0 +1,50 @@
+<!DOCTYPE HTML>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:tiles="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <title tiles:fragment="title" th:text="#{authorize.page.title}"></title>
+    <link rel="stylesheet" type="text/css"
+          href="/webjars/bootstrap/4.5.0/css/bootstrap.min.css"/>
+    <script type="text/javascript" src="/webjars/jquery/3.5.1/jquery.slim.min.js"></script>
+    <script type="text/javascript"
+            src="/webjars/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
+    <style>
+        html,body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+        }
+        .d-flex > form {
+            margin: 5px;
+        }
+
+    </style>
+</head>
+<body>
+<div class="container h-100">
+    <div class="row justify-content-center align-items-center h-100">
+        <div class="col-6">
+            <p th:text="#{authorize.page.confirmation(${authorizationRequest.clientId}, ${authorizationRequest.redirectUri}, ${authorizationRequest.scope})}">
+            </p>
+            <div class="d-flex justify-content-center">
+                <form id="confirmationForm" name="confirmationForm"
+                      action="../oauth/authorize" method="post">
+                    <input name="user_oauth_approval" value="true" type="hidden"/>
+                    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+                    <button class="btn btn-primary" type="submit" th:text="#{authorize.page.form.approve}">Approve
+                    </button>
+                </form>
+                <form id="denyForm" name="denyForm"
+                      action="../oauth/authorize" method="post">
+                    <input name="user_oauth_approval" value="false" type="hidden"/>
+                    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+                    <button class="btn btn-primary" type="submit" th:text="#{authorize.page.form.deny}">Deny</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

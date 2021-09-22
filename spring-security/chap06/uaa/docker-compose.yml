@@ -1,0 +1,72 @@
+version: '3.3'
+services:
+  mysql:
+    image: library/mysql:8
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=password
+      - MYSQL_DATABASE=security
+    ports:
+      - 3306:3306
+    volumes:
+      - mysql-data:/var/lib/mysql
+      - ./mysql-init:/docker-entrypoint-initdb.d
+    command: mysqld --default-authentication-plugin=mysql_native_password --lower_case_table_names=1 --skip-ssl --character_set_server=utf8mb4 --explicit_defaults_for_timestamp
+
+  ldap:
+    image: osixia/openldap:1.3.0
+    environment:
+      TZ: Asia/Shanghai
+      LDAP_LOG_LEVEL: "256"
+      LDAP_ORGANISATION: "iMooc Ltd"
+      LDAP_DOMAIN: "imooc.com"
+      LDAP_BASE_DN: "dc=imooc,dc=com"
+      LDAP_ADMIN_PASSWORD: "admin"
+      LDAP_CONFIG_PASSWORD: "config"
+      #LDAP_READONLY_USER: "false"
+      #LDAP_READONLY_USER_USERNAME: "readonly"
+      #LDAP_READONLY_USER_PASSWORD: "readonly"
+      #LDAP_RFC2307BIS_SCHEMA: "false"
+      #LDAP_BACKEND: "mdb"
+      #LDAP_TLS: "true"
+      #LDAP_TLS_CRT_FILENAME: "ldap.crt"
+      #LDAP_TLS_KEY_FILENAME: "ldap.key"
+      #LDAP_TLS_DH_PARAM_FILENAME: "dhparam.pem"
+      #LDAP_TLS_CA_CRT_FILENAME: "ca.crt"
+      #LDAP_TLS_ENFORCE: "false"
+      #LDAP_TLS_CIPHER_SUITE: "SECURE256:-VERS-SSL3.0"
+      #LDAP_TLS_PROTOCOL_MIN: "3.1"
+      #LDAP_TLS_VERIFY_CLIENT: "demand"
+      #LDAP_REPLICATION: "false"
+      #LDAP_REPLICATION_CONFIG_SYNCPROV: "binddn="cn=admin,cn=config" bindmethod=simple credentials=$LDAP_CONFIG_PASSWORD searchbase="cn=config" type=refreshAndPersist retry="60 +" timeout=1 starttls=critical"
+      #LDAP_REPLICATION_DB_SYNCPROV: "binddn="cn=admin,$LDAP_BASE_DN" bindmethod=simple credentials=$LDAP_ADMIN_PASSWORD searchbase="$LDAP_BASE_DN" type=refreshAndPersist interval=00:00:00:10 retry="60 +" timeout=1 starttls=critical"
+      #LDAP_REPLICATION_HOSTS: "#PYTHON2BASH:['ldap://ldap.example.org','ldap://ldap2.example.org']"
+    ports:
+      - 389:389
+      - 636:636
+#    volumes:
+#      - ./src/main/resources/test-ldap-server.ldif:/container/service/slapd/assets/config/bootstrap/ldif/50-bootstrap.ldif
+
+  redis:
+    image: library/redis:6-alpine
+    environment:
+      TZ: Asia/Shanghai
+    ports:
+      - 6379:6379
+    volumes:
+      - redis-data:/data
+    command: ["redis-server", "--protected-mode", "no"]
+
+  phpldapadmin:
+    image: osixia/phpldapadmin:latest
+    environment:
+      PHPLDAPADMIN_LDAP_HOSTS: "ldap"
+      PHPLDAPADMIN_HTTPS: "false"
+    ports:
+      - "8001:80"
+    depends_on:
+      - ldap
+volumes:
+  mysql-data: {}
+  redis-data: {}

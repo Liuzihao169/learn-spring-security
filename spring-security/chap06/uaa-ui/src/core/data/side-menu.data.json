@@ -1,0 +1,41 @@
+[
+  {
+    "title": "系统管理",
+    "icon": "user",
+    "children": [
+      {
+        "title": "用户管理",
+        "path": "/users",
+        "type": "route"
+      },
+      {
+        "title": "角色管理",
+        "path": "/roles",
+        "type": "route"
+      },
+      {
+        "title": "权限管理",
+        "path": "/permissions",
+        "type": "route"
+      }
+    ]
+  },
+  {
+    "title": "菜单二",
+    "path": "/menu2",
+    "type": "route",
+    "icon": "notification",
+    "children": [
+      {
+        "title": "子菜单一",
+        "path": "/1",
+        "type": "route"
+      },
+      {
+        "title": "子菜单二",
+        "path": "/2",
+        "type": "route"
+      }
+    ]
+  }
+]

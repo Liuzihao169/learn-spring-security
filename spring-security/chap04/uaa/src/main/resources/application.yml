@@ -1,0 +1,23 @@
+server:
+  error:
+    whitelabel:
+      enabled: true
+  servlet:
+    encoding:
+      force: true
+
+spring:
+  datasource:
+    initialization-mode: embedded
+  messages:
+    always-use-message-format: false
+    basename: messages
+    encoding: UTF-8
+    fallback-to-system-locale: true
+    use-code-as-default-message: false
+  mvc:
+    throw-exception-if-no-handler-found: true
+  profiles:
+    active: "dev"
+  resources:
+    add-mappings: false

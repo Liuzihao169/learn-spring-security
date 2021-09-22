@@ -1,0 +1,18 @@
+server:
+  port: 8222
+
+spring:
+  application:
+    name: service-gateway
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+## 网关服务被发现
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+
+
+

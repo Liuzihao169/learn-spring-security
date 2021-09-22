@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>uaa-ui</artifactId>
+
+    <parent>
+        <groupId>com.imooc</groupId>
+        <artifactId>oauth2</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>com.github.eirslett</groupId>
+                <artifactId>frontend-maven-plugin</artifactId>
+                <version>${frontend-maven-plugin.version}</version>
+                <executions>
+                    <!-- 安装 node.js和npm -->
+                    <execution>
+                        <id>install node and npm</id>
+                        <goals>
+                            <goal>install-node-and-npm</goal>
+                        </goals>
+                        <configuration>
+                            <nodeVersion>v12.12.0</nodeVersion>
+                        </configuration>
+                    </execution>
+                    <!-- 安装项目依赖 -->
+                    <execution>
+                        <id>npm install</id>
+                        <goals>
+                            <goal>npm</goal>
+                        </goals>
+                        <!-- 可选步骤，因为默认的阶段就是"generate-resources" -->
+                        <phase>generate-resources</phase>
+                        <configuration>
+                            <arguments>install</arguments>
+                        </configuration>
+                    </execution>
+                    <!-- 编译构建前端文件 -->
+                    <execution>
+                        <id>npm run build</id>
+                        <goals>
+                            <goal>npm</goal>
+                        </goals>
+                        <configuration>
+                            <arguments>run build</arguments>
+                        </configuration>
+                    </execution>
+                    <!-- 运行单元测试 -->
+                    <!-- <execution>
+                            <id>npm run test:unit</id>
+                                <goals>
+                                  <goal>npm</goal>
+                                </goals>
+                            <phase>test</phase>
+                            <configuration>
+                                <arguments>run test:unit</arguments>
+                            </configuration>
+                        </execution>
+                    -->
+                    <!-- 运行集成测试 -->
+                    <!--
+                        <execution>
+                            <id>npm run test:e2e</id>
+                            <goals>
+                                <goal>npm</goal>
+                            </goals>
+                            <phase>test</phase>
+                            <configuration>
+                                    <arguments>run test:e2e</arguments>
+                            </configuration>
+                        </execution>
+                    -->
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>

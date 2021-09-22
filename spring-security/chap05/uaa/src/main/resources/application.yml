@@ -1,0 +1,29 @@
+mooc:
+  jwt:
+    access-token-expire-time: 300000
+    header: Authorization
+    prefix: "Bearer "
+    refresh-token-expire-time: 2592000000
+server:
+  error:
+    whitelabel:
+      enabled: true
+  port: ${PORT:8080}
+  servlet:
+    encoding:
+      force: true
+spring:
+  datasource:
+    initialization-mode: embedded
+  messages:
+    always-use-message-format: false
+    basename: messages
+    encoding: UTF-8
+    fallback-to-system-locale: true
+    use-code-as-default-message: false
+  mvc:
+    throw-exception-if-no-handler-found: true
+  profiles:
+    active: "@spring.profiles.active@"
+  resources:
+    add-mappings: false

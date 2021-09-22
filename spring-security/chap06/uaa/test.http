@@ -1,0 +1,65 @@
+###
+# @name principalUser
+GET {{host}}/api/principal HTTP/1.1
+Authorization: Basic user 12345678
+###
+# @name principalOldUser
+POST {{host}}/authorize/token HTTP/1.1
+Content-Type: application/json; charset=utf-8
+
+{
+  "username": "old_user",
+  "password": "abcd1234"
+}
+###
+# @name authenticationUser
+GET {{host}}/api/authentication HTTP/1.1
+Authorization: Ldap zhaoliu 123
+###
+# @name authenticationOldUser
+GET {{host}}/api/authentication HTTP/1.1
+Authorization: Basic externaluser pass
+###
+GET {{host}}/public/anonymous HTTP/1.1
+###
+POST {{host}}/authorize/register
+Content-Type: application/json
+Accept-Language: zh-CN
+
+{
+  "username": "wangwu",
+  "name": "王五",
+  "email": "wangwu@local.dev",
+  "mobile": "13912341234",
+  "password": "Abcd123$",
+  "matchingPassword": "Abcd123$"
+}
+
+###
+POST {{host}}/authorize/token HTTP/1.1
+Content-Type: application/json; charset=utf-8
+
+{
+  "username": "user",
+  "password": "12345678"
+}
+
+###
+PUT {{host}}/authorize/totp HTTP/1.1
+Content-Type: application/json; charset=utf-8
+
+{
+  "mfaId": "IA12wJtkniwU",
+  "mfaType": 1
+}
+
+###
+POST {{host}}/authorize/login HTTP/1.1
+Content-Type: application/json; charset=utf-8
+
+{
+  "username": "user",
+  "password": "12345678",
+  "mfaId": "nFOn0ccPJm0W",
+  "code": "731626"
+}

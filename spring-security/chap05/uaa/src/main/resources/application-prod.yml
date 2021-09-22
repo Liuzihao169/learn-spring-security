@@ -1,0 +1,51 @@
+logging:
+  level:
+    com:
+      imooc: DEBUG
+    org:
+      hibernate: ERROR
+      springframework:
+        data: ERROR
+        jdbc: ERROR
+        ldap: DEBUG
+        security: ERROR
+    web: ERROR
+spring:
+  datasource:
+    hikari:
+      auto-commit: false
+      data-source-properties:
+        cachePrepStmts: true
+        prepStmtCacheSize: 250
+        prepStmtCacheSqlLimit: 2048
+        useServerPrepStmts: true
+      pool-name: Hikari
+    password: password
+    type: com.zaxxer.hikari.HikariDataSource
+    url: jdbc:mysql://localhost:3306/security?useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false&serverTimezone=UTC
+    username: user
+  devtools:
+    add-properties: false
+    livereload:
+      enabled: false
+    restart:
+      enabled: false
+  h2:
+    console:
+      enabled: false
+  jpa:
+    database: mysql
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate:
+        format_sql: false
+        generate_statistics: false
+    show-sql: false
+  ldap:
+    base: dc=imooc,dc=com
+    password: admin
+    urls: ldap://localhost:389/
+    username: cn=admin;dc=imooc,dc=com
+  profiles: prod

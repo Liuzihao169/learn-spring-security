@@ -1,0 +1,28 @@
+version: '3.3'
+services:
+  mysql:
+    image: library/mysql:8
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=password
+      - MYSQL_DATABASE=security
+    ports:
+      - 3306:3306
+    volumes:
+      - mysql-data:/var/lib/mysql
+    command: mysqld --default-authentication-plugin=mysql_native_password --lower_case_table_names=1 --skip-ssl --character_set_server=utf8mb4 --explicit_defaults_for_timestamp
+
+  redis:
+    image: library/redis:6-alpine
+    environment:
+      TZ: Asia/Shanghai
+    ports:
+      - 6379:6379
+    volumes:
+      - redis-data:/data
+    command: ["redis-server", "--protected-mode", "no"]
+
+volumes:
+  mysql-data: {}
+  redis-data: {}

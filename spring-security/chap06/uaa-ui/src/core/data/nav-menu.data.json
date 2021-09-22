@@ -1,0 +1,12 @@
+[
+  {
+    "title": "首页",
+    "path": "/",
+    "type": "route"
+  },
+  {
+    "title": "关于我们",
+    "path": "/about",
+    "type": "route"
+  }
+]

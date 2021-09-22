@@ -1,0 +1,23 @@
+dn: dc=imooc,dc=com
+objectClass: top
+objectClass: domain
+
+dn: uid=zhaoliu,dc=imooc,dc=com
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+cn: liu zhao
+sn: liu
+uid: zhaoliu
+userPassword: 123
+
+dn: uid=mike,dc=imooc,dc=com
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+cn: joe mike
+sn: joe
+uid: mike
+userPassword: 123

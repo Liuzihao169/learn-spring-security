@@ -1,0 +1,36 @@
+logging:
+  level:
+    com:
+      imooc: ERROR
+    org:
+      hibernate: ERROR
+      springframework:
+        data: ERROR
+        jdbc: ERROR
+        security: ERROR
+    web: ERROR
+  pattern:
+    console: '%clr(%d{E HH:mm:ss.SSS}){blue} %clr(%-5p) %clr(${PID}){faint} %clr(---){faint}
+            %clr([%8.15t]){cyan} %clr(%-40.40logger{0}){blue} %clr(:){red} %clr(%m){faint}%n'
+spring:
+  datasource:
+    driver-class-name: org.h2.Driver
+    initialization-mode: embedded
+    password: ''
+    url: jdbc:h2:mem:test;MODE=MySQL;DATABASE_TO_LOWER=TRUE;CASE_INSENSITIVE_IDENTIFIERS=TRUE;DB_CLOSE_DELAY=-1
+    username: sa
+  devtools:
+    livereload:
+      enabled: false
+    restart:
+      enabled: false
+  h2:
+    console:
+      enabled: false
+  jpa:
+    database: h2
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: create-drop
+  profiles:
+    active: test

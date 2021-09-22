@@ -1,0 +1,90 @@
+mooc:
+  email-provider:
+    api-key: ${EMAIL_API_KEY}
+    name: api
+  jwt:
+    access-token-expire-time: 300000
+    header: Authorization
+    prefix: "Bearer "
+    refresh-token-expire-time: 2592000000
+    key: ${JWT_KEY}
+    refresh-key: ${JWT_REFRESH_KEY}
+  security:
+    role-hierarchy-enabled: true
+  sms-provider:
+    api-url: ${SMS_API_URL}
+    name: ${SMS_PROVIDER_NAME}
+  lean-cloud:
+    app-id: ${LEAN_CLOUD_APP_ID}
+    app-key: ${LEAN_CLOUD_APP_KEY}
+  ali:
+    api-key: ${ALI_API_KEY}
+    api-secret: ${ALI_API_SECRET}
+server:
+  error:
+    whitelabel:
+      enabled: true
+  port: ${PORT:8080}
+  servlet:
+    encoding:
+      force: true
+spring:
+  cache:
+    type: redis
+  datasource:
+    initialization-mode: embedded
+  jpa:
+    properties:
+      javax:
+        persistence:
+          sharedCache:
+            #required - enable selective caching mode - only entities with @Cacheable annotation will use L2 cache.
+            mode: ENABLE_SELECTIVE
+      hibernate:
+        format_sql: true
+        generate_statistics: true
+        connection:
+          provider_disables_autocommit: true
+#        cache:
+#          #required - turn on L2 cache.
+#          use_second_level_cache: false
+#          #optional - turn on query cache.
+#          use_query_cache: true
+#          region:
+#            #required - classpath to cache region factory.
+#            factory_class: org.hibernate.cache.ehcache.EhCacheRegionFactory
+        id:
+          new_generator_mappings: true
+        jdbc:
+          batch_size: 25
+        order_inserts: true
+        order_updates: true
+        query:
+          fail_on_pagination_over_collection_fetch: true
+          in_clause_parameter_padding: true
+  mail:
+    host: ${SMTP_HOST}
+    password: ${SMTP_PASSWORD}
+    port: ${SMTP_PORT}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+    username: ${SMTP_USERNAME}
+  messages:
+    always-use-message-format: false
+    basename: messages
+    encoding: UTF-8
+    fallback-to-system-locale: true
+    use-code-as-default-message: false
+  mvc:
+    throw-exception-if-no-handler-found: true
+  profiles:
+    active: "@spring.profiles.active@"
+  redis:
+    host: ${REDIS_HOST:localhost}
+    port: ${REDIS_PORT:6379}
+  resources:
+    add-mappings: true

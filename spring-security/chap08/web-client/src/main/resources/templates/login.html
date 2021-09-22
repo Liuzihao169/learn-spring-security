@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title>Spring Security OAuth 2.0 Web 客户端</title>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.css"
+          th:href="@{/webjars/bootstrap/css/bootstrap.css}"/>
+</head>
+<body>
+<div class="container">
+    <h1 th:text="#{login.container.title}">Login</h1>
+    <p th:if="${loginError}" style="font-weight:bold;color:red;" th:text="#{login.page.error}">Wrong username or
+        password</p>
+    <form th:action="@{/login}" method="post">
+        <div class="form-row">
+            <div class="form-group">
+                <label for="username" th:text="#{login.page.form.username}">Username</label>
+                <input type="text" id="username" name="username" value="user_web_client" autofocus="autofocus"
+                       class="form-control">
+                <small class="form-text text-muted" th:text="#{login.page.form.username.hint}">using built-in
+                    user_web_client / password to login</small>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group">
+                <label for="password" th:text="#{login.page.form.password}">Password</label>
+                <input type="password" id="password" name="password" value="password" class="form-control">
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary" th:text="#{login.page.form.built-in.login}">Log in</button>
+    </form>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title" th:text="#{login.page.oauth2.form.title}">Authorize the client with <span
+                    style="font-family:monospace">grant_type</span>:</h3>
+        </div>
+        <ul class="list-group">
+            <li class="list-group-item">
+                <a href="/authorize?grant_type=authorization_code"
+                   th:href="@{/authorize?grant_type=authorization_code}"><span
+                        th:text="#{login.page.oauth2.form.grant-type.code}">Authorization Code</span>&nbsp;&nbsp;<small
+                        class="text-muted" th:text="#{login.page.oauth2.form.grant-type.code.hint}">(Login to UAA using:
+                    user/12345678)</small></a>
+            </li>
+            <li class="list-group-item">
+                <a href="/authorize?grant_type=client_credentials"
+                   th:href="@{/authorize?grant_type=client_credentials}"><span
+                        th:text="#{login.page.oauth2.form.grant-type.client-credential}">Client Credentials</span></a>
+            </li>
+            <li class="list-group-item">
+                <div>
+                    <p th:text="#{login.page.oauth2.form.grant-type.password}">Resource Owner Password Credentials</p>
+                    <form th:action="@{/authorize}" method="post">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="oauth2_username" th:text="#{login.page.oauth2.form.username}">Username</label>
+                                <input type="text" id="oauth2_username" name="username" value="user"
+                                       class="form-control input-sm">
+                                <small class="form-text text-muted" th:text="#{login.page.oauth2.form.username.hint}">Use
+                                    Uaa Username and Password: user / 12345678</small>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="oauth2_password" th:text="#{login.page.oauth2.form.password}">Password</label>
+                                <input type="password" id="oauth2_password" name="password" value="12345678"
+                                       class="form-control input-sm">
+                            </div>
+                        </div>
+                        <input type="hidden" id="grant_type" name="grant_type" value="password">
+                        <button type="submit" class="btn btn-primary btn-sm" th:text="#{login.page.oauth2.form.authorize}">Authorize</button>
+                    </form>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+<script src="/webjars/jquery/jquery.min.js" th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<script src="/webjars/bootstrap/js/bootstrap.min.js" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+###
+# @name greeting
+GET {{host}}/authorize/greeting HTTP/1.1
+###
+POST {{host}}/authorize/login
+Content-Type: application/json
+
+{
+    "username": "user",
+    "password": "12345678"
+}
+###
+POST {{host}}/authorize/logout
+###
+# @name register
+POST {{host}}/authorize/register
+Accept-Language: zh-CN
+Content-Type: application/json
+
+{
+    "name": "张三李四",
+    "username": "zhangsan",
+    "password": "qwerty12345T!",
+    "matchingPassword": "12345678",
+    "email": "zs@local"
+}

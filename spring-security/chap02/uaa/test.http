@@ -1,0 +1,19 @@
+### Http Basic Auth
+GET http://localhost:8080/api/me
+Authorization: Basic user 12345678
+
+###
+GET http://localhost:8080/login
+
+### Form Login （Invalid CSRF Token）
+POST http://localhost:8080/login?username=user&password=12345678
+Content-Type: application/x-www-form-urlencoded
+
+### RestAuthenticationFilter
+POST http://localhost:8080/authorize/login
+Content-Type: application/json
+
+{
+  "username": "user",
+  "password": "12345678"
+}

@@ -1,0 +1,13 @@
+[
+  {
+    "title": "个人档案",
+    "path": "/me",
+    "type": "route"
+  },
+  {
+    "title": "访问外部链接",
+    "path": "https://baidu.com",
+    "type": "link",
+    "target": "_blank"
+  }
+]

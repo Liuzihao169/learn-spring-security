@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <title th:text="#{login.page.title}"></title>
+    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/4.5.0/css/bootstrap.min.css"/>
+    <script type="text/javascript" src="/webjars/jquery/3.5.1/jquery.slim.min.js"></script>
+    <script type="text/javascript" src="/webjars/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
+    <style>
+        html,body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+        }
+
+    </style>
+</head>
+<body>
+<div class="container-fluid h-100">
+    <div class="row justify-content-center align-items-center h-100">
+        <form class="col-6" name="f" th:action="@{/login}" method="post">
+            <div th:if="${param.error}" class="alert alert-danger" th:text="#{login.page.bad-credential}">
+                Invalid username and password.
+            </div>
+            <div th:if="${param.logout}" class="alert alert-success" th:text="#{login.page.logout.msg}">
+                You have been logged out.
+            </div>
+            <div class="form-group">
+                <label for="username" th:text="#{login.page.form.username}">Username:</label>
+                <input type="text" class="form-control" id="username" name="username"/>
+            </div>
+            <div class="form-group">
+                <label for="password" th:text="#{login.page.form.password}">Password:</label>
+                <input type="password" class="form-control" id="password" name="password"/>
+            </div>
+            <input type="hidden" id="csrf_token" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+            <div class="d-flex flex-row justify-content-center">
+                <button type="submit" class="btn btn-primary" th:text="#{login.page.form.submit}">Submit</button>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>
